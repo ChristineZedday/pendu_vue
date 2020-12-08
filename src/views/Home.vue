@@ -1,18 +1,50 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
-</template>
-
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
+import Touche from '@/components/Touche.vue'
+
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Touche
+  },
+  methods: {
+    alphabet()
+   {
+      return ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    
+      }
   }
+ 
 }
+
 </script>
+
+<template>
+ 
+  <div class="home">
+      <h1>Jeu du pendu</h1>
+      <div class="ligne">
+        <div  v-for ="value in alphabet()" :key="value">
+        <Touche :letter="value" />
+        </div> 
+      </div>
+  </div>
+</template>
+<style lang="scss">
+.home
+{display: flex;
+flex-direction: column;
+  .ligne
+{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+}
+</style>
+
+
+
