@@ -8,11 +8,11 @@ export default {
 		},
 		tested: {
 			type: Boolean,
-			defaut: false
+			default: false
 			},
 		present:{
 			type: Boolean,
-			defaut: false
+			default: false
 			}
 	},
     methods: {

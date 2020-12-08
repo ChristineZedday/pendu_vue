@@ -2,12 +2,14 @@
 // @ is an alias to /src
 
 import Touche from '@/components/Touche.vue'
+import Mot from '@/components/Mot.vue'
 
 
 export default {
   name: 'Home',
   components: {
-    Touche
+    Touche,
+    Mot
   },
   methods: {
     alphabet()
@@ -25,6 +27,7 @@ export default {
  
   <div class="home">
       <h1>Jeu du pendu</h1>
+      <Mot/>
       <div class="ligne">
         <div  v-for ="value in alphabet()" :key="value">
         <Touche :letter="value" />
