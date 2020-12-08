@@ -28,6 +28,7 @@ export default {
   <div class="home">
       <h1>Jeu du pendu</h1>
       <Mot/>
+      <p v-if="this.$store.state.trouve">Trouvé en {{ this.$store.state.nbCoups }} coups</p>
       <div class="ligne">
         <div  v-for ="value in alphabet()" :key="value">
         <Touche :letter="value" />

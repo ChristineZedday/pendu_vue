@@ -6,18 +6,24 @@ export default {
 			type: String, //! types première lettre en majuscule, pas de quotes!
 			required: true,
 		},
-		tested: {
-			type: Boolean,
-			default: false
-			},
-		present:{
-			type: Boolean,
-			default: false
-			}
-	},
+		
+		
+    },
+   data: () => ({
+    tested: false,
+  }),
     methods: {
         test() {
             this.tested = true;
+            if (this.$store.state.lettres.indexOf(this.letter)!=-1)
+            { 
+               
+                this.$store.dispatch('lettreTrouvee', this.letter);
+               this.$store.dispatch('display');
+               
+            }
+              this.$store.dispatch('addCoup');
+            
         }
     }
 

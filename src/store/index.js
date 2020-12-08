@@ -12,14 +12,6 @@ export default new Vuex.Store({
     trouve: false,
     nbCoups:  0,
   },
-  getters: {
-    lettresInMot: (state) => (lettre) => {
-      if (state.lettres.indexOf(lettre) != -1)
-      {
-        return true
-      }
-    }
-  },
   mutations: {
     NOUV_MOT(state, mot) {
       state.mot = mot;
@@ -32,17 +24,37 @@ export default new Vuex.Store({
           state.lettres.push(lettre);
         }
      }
-     console.log(state.lettres);
+  
     },
     LETTRE_TROUVEE(state, lettre)
     {
+      
       state.trouvees.push(lettre);
       if (state.lettres.length == state.trouvees.length)
-      { state.trouve = true}
+        { 
+          state.trouve = true;
+        }
     },
-    AFFICHE_UPDATE(state, affiche )
+    AFFICHE_UPDATE(state)
     {
+      let affiche = '';
+      for (let lettre of state.mot)
+      {
+        if (state.trouvees.indexOf(lettre)!=-1)
+        {
+          affiche = affiche + lettre + ' ';
+          
+        }
+        else {
+          affiche = affiche + '_ ';
+          
+        }
+      }
       state.affiche = affiche;
+    },
+    ADD_COUP(state) 
+    {
+      state.nbCoups++;
     }
     
   },
@@ -52,11 +64,19 @@ export default new Vuex.Store({
     },
     lettreTrouvee(context, lettre) {
       context.commit('LETTRE_TROUVEE',lettre);
+      
     },
-    afficheUpdate(context, affiche) {
-      context.commit(AFFICHE_UPDATE, affiche);
-    }
+    
+    display(context) {
+   
+    context.commit('AFFICHE_UPDATE');
+  
   },
+  addCoup (context)
+  {
+    context.commit('ADD_COUP');
+  }
+},
   modules: {
   }
 })

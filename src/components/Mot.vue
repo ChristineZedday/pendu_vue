@@ -2,6 +2,7 @@
 export default {
 	name: 'Mot',
 	
+	
 	methods: {
 		dico()
 		{
@@ -33,27 +34,14 @@ export default {
 		genere() {
 			let dic = this.dico();
 			let lang = dic.length;
-			
 			let mot = dic[getRandomInt(lang-1)];
 			this.$store.dispatch('nouveauMot',mot);
+			this.$store.dispatch('display');
+			
 		},
-		display() {
-			affiche = this.$store.state.affiche;
-			for (lettre of this.$store.state.mot)
-			{
-				if (lettreInMot(this.$store.state.trouvees))
-				{
-					affiche+= lettre+' ';
-				}
-				else {
-					affiche+='_'+' ';
-				}
-			}
-			this.$store.dispatch('afficheUpdate',affiche);
-		}
-
 	}
 }
+
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
